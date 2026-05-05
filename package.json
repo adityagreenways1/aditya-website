@@ -1,0 +1,19 @@
+{
+  "name": "solar-edge",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Solar panel business website",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend",
+    "build": "npm run build --workspace=frontend",
+    "preview": "npm run preview --workspace=frontend",
+    "lint": "eslint frontend --ext .ts,.tsx --config frontend/eslint.config.js",
+    "typecheck": "npm run typecheck --workspace=frontend"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.14.1"
+  }
+}
