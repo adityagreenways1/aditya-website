@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Blogs from './components/Blogs';
 import BlogDetail from './components/BlogDetail';
 import Navbar from './components/Navbar';
@@ -18,7 +18,6 @@ import WelcomePopup from './components/WelcomePopup';
 const Home = () => (
   <>
     <Hero />
-    r
     <About />
     <div id="scheme">
       <Scheme />
@@ -28,22 +27,29 @@ const Home = () => (
     <div id="faq">
       <Faq />
     </div>
-    <div id="blogs">
-      <Blogs />
-    </div>
     <QuoteForm />
     <ContactForm />
   </>
 );
 
+const ScrollToTop: React.FC = () => {
+  const location = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
-import { useEffect } from 'react';
+  return null;
+};
+
 
 // BlogDetailsRoute removed
 
 const App: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [pendingScrollId, setPendingScrollId] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -52,12 +58,73 @@ const App: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const onMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return;
+
+      const data = event.data as unknown;
+      if (!data || typeof data !== 'object') return;
+
+      const type = (data as { type?: unknown }).type;
+      if (type !== 'NAVIGATE_TO_QUOTE') return;
+
+      setPendingScrollId('quote');
+      if (location.pathname !== '/') {
+        navigate('/');
+      }
+    };
+
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [navigate, location.pathname]);
+
+  useEffect(() => {
+    if (!pendingScrollId) return;
+    if (location.pathname !== '/') return;
+
+    const scrollNow = () => {
+      const el = document.getElementById(pendingScrollId);
+      if (!el) return false;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return true;
+    };
+
+    if (scrollNow()) {
+      setPendingScrollId(null);
+      return;
+    }
+
+    const t = window.setTimeout(() => {
+      if (scrollNow()) {
+        setPendingScrollId(null);
+      }
+    }, 250);
+
+    return () => window.clearTimeout(t);
+  }, [pendingScrollId, location.pathname]);
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-gray-50">
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blog/:slug" element={<BlogDetail />} />
+        <Route
+          path="/blogs"
+          element={
+            <div className="pt-24">
+              <Blogs />
+            </div>
+          }
+        />
+        <Route
+          path="/blog/:slug"
+          element={
+            <div className="pt-24">
+              <BlogDetail />
+            </div>
+          }
+        />
       </Routes>
       <Footer />
       {showPopup && <WelcomePopup onClose={() => setShowPopup(false)} />}

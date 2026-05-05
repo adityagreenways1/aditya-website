@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { blogs } from "../data/blogs";
 
@@ -7,53 +7,49 @@ const BlogDetail: React.FC = () => {
   const navigate = useNavigate();
 
   const goBackToBlogs = () => {
-    navigate({ pathname: "/", hash: "#blogs" });
+    navigate("/blogs");
   };
 
   const blog = blogs.find((b) => b.slug === slug);
 
-  const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [iframeHeight, setIframeHeight] = useState<number>(900);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
     if (!blog) return;
 
     setLoading(true);
     setError(false);
-
-    // ✅ Use htmlFile instead of manual path
-    fetch(blog.htmlFile)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to load blog");
-        return res.text();
-      })
-      .then((html) => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-
-        // ❌ remove unwanted parts
-        doc.querySelector("header")?.remove();
-        doc.querySelector("footer")?.remove();
-
-        // ✅ extract styles
-        let styles = "";
-        doc.querySelectorAll("style").forEach((style) => {
-          styles += style.outerHTML;
-        });
-
-        const body = doc.body.innerHTML;
-
-        setContent(styles + body);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError(true);
-        setLoading(false);
-      });
-
+    setIframeHeight(900);
     window.scrollTo(0, 0);
   }, [blog]);
+
+  const updateIframeHeight = () => {
+    try {
+      const iframe = iframeRef.current;
+      const doc = iframe?.contentDocument;
+      if (!doc) return;
+
+      const nextHeight =
+        doc.documentElement?.scrollHeight || doc.body?.scrollHeight;
+
+      if (typeof nextHeight === "number" && nextHeight > 0) {
+        setIframeHeight(nextHeight);
+      }
+    } catch {
+      // ignore (cross-origin or access issues)
+    }
+  };
+
+  const handleIframeLoad = () => {
+    setLoading(false);
+    setError(false);
+    updateIframeHeight();
+    setTimeout(updateIframeHeight, 250);
+    setTimeout(updateIframeHeight, 1200);
+  };
 
   if (!blog) {
     return (
@@ -71,20 +67,25 @@ const BlogDetail: React.FC = () => {
 
   return (
     <section className="max-w-4xl mx-auto px-4 py-10 min-h-screen">
-      <button
-        className="mb-6 text-[#46614b] underline"
-        onClick={goBackToBlogs}
-      >
-        ← Back to Blogs
-      </button>
+      <div className="sticky top-0 z-20 -mx-4 px-2 sm:px-4 py-2 bg-white/90 backdrop-blur border-b border-gray-200 mb-6">
+        <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={goBackToBlogs}
+          className="px-4 py-2 rounded-lg bg-[#46614b] text-white font-semibold hover:bg-[#3d5340] transition"
+        >
+          ← Back to Blogs
+        </button>
+
+        <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+          {blog.category}
+        </span>
+        </div>
+      </div>
 
       <h1 className="text-3xl font-bold mb-4 text-[#46614b]">
         {blog.title}
       </h1>
-
-      <span className="inline-block mb-4 text-xs text-gray-500">
-        {blog.category}
-      </span>
 
       <div className="w-full min-h-[60vh] bg-gray-100 rounded-xl overflow-hidden relative">
         
@@ -102,11 +103,19 @@ const BlogDetail: React.FC = () => {
           </div>
         )}
 
-        {/* ✅ Blog Content */}
-        {!loading && !error && (
-          <div
-            style={{ minHeight: "100vh" }}
-            dangerouslySetInnerHTML={{ __html: content }}
+        {/* ✅ Blog Content (isolated so it can't change Navbar styles) */}
+        {!error && (
+          <iframe
+            ref={iframeRef}
+            title={blog.title}
+            src={blog.htmlFile}
+            onLoad={handleIframeLoad}
+            onError={() => {
+              setError(true);
+              setLoading(false);
+            }}
+            className="w-full border-0"
+            style={{ height: iframeHeight }}
           />
         )}
       </div>

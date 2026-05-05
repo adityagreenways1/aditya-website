@@ -13,7 +13,7 @@ const navItems: NavItem[] = [
   { id: 'scheme', label: 'Benefits', type: 'anchor', href: '#scheme' },
   { id: 'services', label: 'Services', type: 'anchor', href: '#services' },
   { id: 'faq', label: 'FAQ', type: 'anchor', href: '#faq' },
-  { id: 'blog', label: 'Blog', type: 'anchor', href: '#blogs' },
+  { id: 'blog', label: 'Blog', type: 'link', to: '/blogs' },
   { id: 'contact', label: 'Contact', type: 'anchor', href: '#contact' },
 ];
 

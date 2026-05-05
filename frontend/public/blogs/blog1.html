@@ -93,8 +93,15 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  :root {
+    /* Match Tailwind default `font-sans` stack (so blog font matches site font) */
+    --site-font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
   body {
-    font-family: 'Georgia', serif;
+    font-family: var(--site-font-sans);
     background: #faf9f6;
     color: #1a1a1a;
     line-height: 1.8;
@@ -107,7 +114,7 @@
     text-align: center;
     padding: 10px 20px;
     font-size: 13px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     letter-spacing: 0.03em;
   }
   .topbar a {
@@ -130,7 +137,7 @@
     border: 1px solid rgba(245, 158, 11, 0.4);
     border-radius: 20px;
     font-size: 12px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 5px 14px;
@@ -142,12 +149,12 @@
     line-height: 1.25;
     max-width: 780px;
     margin: 0 auto 18px;
-    font-family: Georgia, serif;
+    font-family: var(--site-font-sans);
   }
   .hero .meta {
     font-size: 13px;
     color: rgba(255,255,255,0.55);
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     margin-bottom: 28px;
   }
   .hero .meta span { margin: 0 8px; }
@@ -166,7 +173,7 @@
     font-size: 28px;
     font-weight: 700;
     color: #F59E0B;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     display: block;
   }
   .hero-stat .lbl {
@@ -174,7 +181,7 @@
     color: rgba(255,255,255,0.5);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
   }
 
   /* LAYOUT */
@@ -198,7 +205,7 @@
     letter-spacing: 0.08em;
     color: #46614B;
     margin-bottom: 14px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     font-weight: 700;
   }
   .toc ol {
@@ -211,7 +218,7 @@
     color: #46614B;
     text-decoration: none;
     font-size: 14px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
   }
   .toc a:hover { text-decoration: underline; }
 
@@ -221,7 +228,7 @@
     font-weight: 700;
     color: #1a1a1a;
     margin: 48px 0 16px;
-    font-family: Georgia, serif;
+    font-family: var(--site-font-sans);
     border-bottom: 2px solid #e8f0eb;
     padding-bottom: 10px;
   }
@@ -230,7 +237,7 @@
     font-weight: 700;
     color: #46614B;
     margin: 32px 0 12px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
   }
   .article p {
     font-size: 17px;
@@ -261,7 +268,7 @@
     display: block;
     font-size: 15px;
     margin-bottom: 6px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
   }
   .highlight-box p {
     font-size: 15px;
@@ -287,7 +294,7 @@
     width: 100%;
     border-collapse: collapse;
     margin: 24px 0 32px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     font-size: 15px;
   }
   .cost-table thead tr {
@@ -366,12 +373,12 @@
     font-size: 13px;
     font-weight: 700;
     flex-shrink: 0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     margin-top: 2px;
   }
   .step-content strong {
     display: block;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     font-size: 15px;
     color: #1a1a1a;
     margin-bottom: 4px;
@@ -393,7 +400,7 @@
     font-weight: 700;
     color: #1a1a1a;
     margin-bottom: 10px;
-    font-family: Georgia, serif;
+    font-family: var(--site-font-sans);
   }
   .faq-a {
     font-size: 16px;
@@ -412,7 +419,7 @@
   }
   .cta-block h2 {
     font-size: 24px;
-    font-family: Georgia, serif;
+    font-family: var(--site-font-sans);
     margin-bottom: 12px;
     color: #fff;
     border: none;
@@ -436,7 +443,7 @@
     text-decoration: none;
     font-size: 15px;
     font-weight: 700;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     transition: background 0.2s;
   }
   .btn-primary:hover { background: #D97706; }
@@ -448,7 +455,7 @@
     border-radius: 8px;
     text-decoration: none;
     font-size: 15px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
   }
 
   /* AUTHOR TAG */
@@ -471,11 +478,11 @@
     color: #F59E0B;
     font-size: 16px;
     font-weight: 700;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--site-font-sans);
     flex-shrink: 0;
   }
-  .author-info p { font-size: 14px; color: #888; margin: 0; font-family: 'Segoe UI', sans-serif; }
-  .author-info strong { font-size: 15px; color: #1a1a1a; display: block; font-family: 'Segoe UI', sans-serif; }
+  .author-info p { font-size: 14px; color: #888; margin: 0; font-family: var(--site-font-sans); }
+  .author-info strong { font-size: 15px; color: #1a1a1a; display: block; font-family: var(--site-font-sans); }
 
   @media (max-width: 600px) {
     .hero h1 { font-size: 24px; }
@@ -818,7 +825,7 @@
       <h2>Ready to Switch to Solar in Visakhapatnam?</h2>
       <p>Get a free site survey and personalised quote from Vizag's most trusted solar company. We handle everything, from site assessment to subsidy processing and installation.</p>
       <div class="cta-buttons">
-        <a href="https://www.adityagreenways.com/#contact" class="btn-primary">Get Free Quote</a>
+        <a href="#" id="cta-get-quote" class="btn-primary">Get Free Quote</a>
         <a href="tel:+919849218317" class="btn-secondary">📞 Call +91 9849 218 317</a>
       </div>
     </div>
@@ -834,6 +841,26 @@
 
   </div><!-- end .article -->
 </div><!-- end .page -->
+
+<script>
+  (function () {
+    var btn = document.getElementById('cta-get-quote');
+    if (!btn) return;
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'NAVIGATE_TO_QUOTE' }, window.location.origin);
+        } else {
+          window.location.href = '/#quote';
+        }
+      } catch (err) {
+        window.location.href = '/#quote';
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
