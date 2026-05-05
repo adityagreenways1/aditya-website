@@ -18,6 +18,7 @@ import WelcomePopup from './components/WelcomePopup';
 const Home = () => (
   <>
     <Hero />
+    r
     <About />
     <div id="scheme">
       <Scheme />
