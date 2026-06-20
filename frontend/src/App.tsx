@@ -13,6 +13,7 @@ import ContactForm from './components/ContactForm';
 import QuoteForm from './components/QuoteForm';
 import Footer from './components/Footer';
 import WelcomePopup from './components/WelcomePopup';
+import PrivacyPolicy from './components/PrivacyPolicy';
 // Blog imports removed
 
 const Home = () => (
@@ -122,6 +123,14 @@ const App: React.FC = () => {
           element={
             <div className="pt-24">
               <BlogDetail />
+            </div>
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={
+            <div className="pt-24">
+              <PrivacyPolicy />
             </div>
           }
         />

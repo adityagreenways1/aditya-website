@@ -1,4 +1,5 @@
 import { Sun, Mail, Phone, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -122,6 +123,12 @@ export default function Footer() {
                 <span className="text-gray-400 text-sm">
                   Visakhapatnam & Hyderabad
                 </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                <Link to="/privacy-policy" className="text-gray-400 hover:text-white text-sm">
+                  Privacy Policy
+                </Link>
               </li>
             </ul>
           </div>
