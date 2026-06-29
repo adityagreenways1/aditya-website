@@ -653,7 +653,7 @@
       <h2>Ready to Ask These Questions to Aditya Greenways?</h2>
       <p>We welcome every single one. Call us today for a free consultation — we will answer all 10 questions with complete transparency, show you our portal listing, share our GSTIN, and connect you with customers in your neighbourhood.</p>
       <div class="cta-btns">
-        <a href="https://www.adityagreenways.com/#contact" class="btn-p">Get Free Consultation</a>
+        <a href="#" id="cta-get-quote" class="btn-p">Get Free Consultation</a>
         <a href="tel:+919849218317" class="btn-s">📞 +91 9849 218 317</a>
       </div>
     </div>
@@ -671,6 +671,20 @@
 
   </div><!-- /.article -->
 </div><!-- /.page -->
+
+<script>
+  var btn = document.getElementById('cta-get-quote');
+  if (btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (window.parent !== window) {
+        window.parent.postMessage({ type: 'NAVIGATE_TO_QUOTE' }, window.location.origin);
+      } else {
+        window.location.href = '/#quote';
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
