@@ -27,7 +27,7 @@ export const blogs: Blog[] = [
   },
   {
     slug: "questions-to-ask-solar-company-visakhapatnam",
-    title: "10 Questions to Ask Before Hiring Any Solar Company in Visakhapatnam",
+    title: "10 Questions to Ask Before Hiring Any Solar Company in Visakhapatnam?",
     description:
       "Before you spend ₹1 lakh or more on solar in Vizag, ask these 10 questions. A consumer protection checklist that exposes unqualified vendors and helps you choose a trustworthy solar company.",
     category: "Consumer Guide",
