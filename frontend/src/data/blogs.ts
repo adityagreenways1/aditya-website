@@ -34,4 +34,13 @@ export const blogs: Blog[] = [
     image: "/img/blog3.png",
     htmlFile: "/blogs/blog3.html",
   },
+  {
+    slug: "on-grid-off-grid-hybrid-solar-visakhapatnam",
+    title: "On-Grid vs Off-Grid vs Hybrid Solar in Visakhapatnam 2026",
+    description:
+      "Not sure which solar system is right for your Vizag home? Compare on-grid, off-grid, and hybrid solar — costs, pros, cons, subsidy eligibility, and a clear recommendation for most Visakhapatnam homeowners.",
+    category: "Solar Buyer's Guide",
+    image: "/img/blog4.png",
+    htmlFile: "/blogs/blog4.html",
+  },
 ];
