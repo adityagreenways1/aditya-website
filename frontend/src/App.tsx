@@ -105,7 +105,7 @@ const App: React.FC = () => {
   }, [pendingScrollId, location.pathname]);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-gray-50">
+    <div className="min-h-screen bg-gray-50" style={{ overflowX: "clip" }}>
       <Navbar />
       <ScrollToTop />
       <Routes>
@@ -118,14 +118,7 @@ const App: React.FC = () => {
             </div>
           }
         />
-        <Route
-          path="/blog/:slug"
-          element={
-            <div className="pt-24">
-              <BlogDetail />
-            </div>
-          }
-        />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route
           path="/privacy-policy"
           element={

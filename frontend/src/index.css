@@ -4,13 +4,13 @@
 
 @layer base {
   html {
-    overflow-x: hidden;
+    overflow-x: clip;
     scroll-behavior: smooth;
     scroll-padding-top: 4rem; /* 64px for mobile - matches h-16 header */
   }
-  
+
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100vw;
   }
 

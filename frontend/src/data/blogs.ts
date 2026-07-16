@@ -5,6 +5,10 @@ export type Blog = {
   category: string;
   image?: string;
   htmlFile: string;   // ✅ NEW FIELD
+  heroStyle?: "legacy" | "new"; // "new" = shared hero (breadcrumbs/badge/serif title); default "legacy" = original per-blog header
+  author?: string;
+  date?: string;
+  readTime?: string;
 };
 
 export const blogs: Blog[] = [
@@ -42,5 +46,18 @@ export const blogs: Blog[] = [
     category: "Solar Buyer's Guide",
     image: "/img/blog4.png",
     htmlFile: "/blogs/blog4.html",
+  },
+  {
+    slug: "solar-panel-maintenance-visakhapatnam",
+    title: "Solar Panel Maintenance in Visakhapatnam.",
+    description:
+      "Salt air, humidity, dust, and cyclones make Visakhapatnam's coast tough on solar panels. Learn the exact cleaning schedule, AMC costs, warranty rules, and DIY checklist to protect your solar investment and output.",
+    category: "Maintenance Guide",
+    image: "/img/Blog5.png",
+    htmlFile: "/blogs/blog5.html",
+    heroStyle: "new",
+    author: "Aditya Greenways Team",
+    date: "July 13, 2026",
+    readTime: "12 min read",
   },
 ];
