@@ -60,4 +60,17 @@ export const blogs: Blog[] = [
     date: "July 13, 2026",
     readTime: "12 min read",
   },
+  {
+    slug: "net-metering-visakhapatnam-explained",
+    title: "Net Metering in Visakhapatnam Explained: How Your Solar Bill Credit Actually Works",
+    description:
+      "Confused about net metering? Learn exactly how the bi-directional meter, billing cycle, and unit credits work for rooftop solar in Visakhapatnam — with a real ₹ billing example and the APEPDCL process.",
+    category: "Solar Economics",
+    image: "/img/blog6.png",
+    htmlFile: "/blogs/blog6.html",
+    heroStyle: "new",
+    author: "Aditya Greenways Team",
+    date: "July 28, 2026",
+    readTime: "11 min read",
+  },
 ];
