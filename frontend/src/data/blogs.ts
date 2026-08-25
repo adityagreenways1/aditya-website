@@ -73,4 +73,17 @@ export const blogs: Blog[] = [
     date: "July 28, 2026",
     readTime: "11 min read",
   },
+  {
+    slug: "roof-suitability-solar-visakhapatnam",
+    title: "Is Your Roof Actually Right for Solar? A Visakhapatnam Homeowner's Practical Assessment Guide",
+    description:
+      "Before you get quotes, check whether your roof can actually support solar. A practical, no-nonsense guide to roof types, shading, orientation, and structural load for Visakhapatnam homes.",
+    category: "Buyer's Guide",
+    image: "/img/Blog7.png",
+    htmlFile: "/blogs/blog7.html",
+    heroStyle: "new",
+    author: "Aditya Greenways Team",
+    date: "August 10, 2026",
+    readTime: "10 min read",
+  },
 ];
