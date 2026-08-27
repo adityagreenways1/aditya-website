@@ -86,4 +86,17 @@ export const blogs: Blog[] = [
     date: "August 10, 2026",
     readTime: "10 min read",
   },
+  {
+    slug: "solar-roi-payback-visakhapatnam",
+    title: "Solar ROI in Visakhapatnam: How Many Years to Actually Recover Your Investment",
+    description:
+      "A real, year-by-year payback breakdown for rooftop solar in Visakhapatnam — what you actually pay after subsidy, how monthly savings add up, and what changes the payback period.",
+    category: "Solar Economics",
+    image: "/img/Blog8.png",
+    htmlFile: "/blogs/blog8.html",
+    heroStyle: "new",
+    author: "Aditya Greenways Team",
+    date: "August 24, 2026",
+    readTime: "11 min read",
+  },
 ];
